@@ -1,0 +1,47 @@
+1   100 math4 3
+1   101 math2 5
+1   102 math1 4
+1   103 math3 2
+1   201 prog1 5
+1   201 prog2 3
+
+6   mostafa 30301
+6   ali 50501
+6   noha 70701
+6   ashraf 90901
+
+7   mostafa math1
+7   mostafa math2
+7   mostafa math3
+7   ali math1
+7   ali math2
+7   noha math1
+7   noha math3
+7   noha prog2
+7   mostafa math4
+7   mostafa prog1
+
+8   noha math1
+8   ali math1
+8   mostafa math1
+
+4
+9
+
+2 ma
+2 pro
+2 machine
+
+3 math1
+3 math2
+3 machine
+
+4
+9
+
+8   mostafa math1
+
+4
+9
+
+10

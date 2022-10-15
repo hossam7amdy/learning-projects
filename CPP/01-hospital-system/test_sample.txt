@@ -1,0 +1,39 @@
+1   15 mostafa 0
+1   15 asmaa 0
+1   15 belal 1
+1   15 ahmed 0
+1   15 doaa 1
+1   15 emad 0
+
+2
+
+1   15 ziad 1
+
+2
+
+1   15 safaa 0
+1   15 ashraf 1
+
+2
+
+3
+10
+
+3
+15
+
+2
+
+1   7 soha 1
+
+2
+
+1   15 amal 1
+
+3
+
+7
+
+2
+
+4

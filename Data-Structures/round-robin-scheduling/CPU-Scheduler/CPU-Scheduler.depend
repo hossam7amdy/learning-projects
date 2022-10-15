@@ -1,0 +1,79 @@
+# depslib dependency file v1.0
+1640584702 source:c:\users\hossam\downloads\cpu-scheduler\main.cpp
+	"RoundRobin.h"
+
+1640581926 source:c:\users\hossam\downloads\cpu-scheduler\process.cpp
+	"process.h"
+
+1640581875 c:\users\hossam\downloads\cpu-scheduler\process.h
+	<iostream>
+
+1640584416 source:c:\users\hossam\downloads\cpu-scheduler\dll.cpp
+	"DLL.h"
+	"process.h"
+	<iostream>
+
+1640585131 c:\users\hossam\downloads\cpu-scheduler\dll.h
+
+1640584454 source:c:\users\hossam\downloads\cpu-scheduler\roundrobin.cpp
+	"RoundRobin.h"
+
+1640583592 c:\users\hossam\downloads\cpu-scheduler\roundrobin.h
+	"process.h"
+	"DLL.h"
+
+1640634025 source:c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\dll.cpp
+	"DLL.h"
+	"process.h"
+	<iostream>
+
+1640631370 c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\dll.h
+
+1640624978 c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\process.h
+	<iostream>
+
+1640633920 source:c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\main.cpp
+	"RoundRobin.h"
+
+1640628722 c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\roundrobin.h
+	"DLL.h"
+	"process.h"
+
+1640624978 source:c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\process.cpp
+	"process.h"
+
+1640634286 source:c:\users\hossam\downloads\myfiles\computer science\cs diploma\3rd semester\cs505\assignment02\cpu-scheduler\roundrobin.cpp
+	"RoundRobin.h"
+
+1640679315 source:c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\dll.cpp
+	"DLL.h"
+	"process.h"
+	<iostream>
+
+1640676430 c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\dll.h
+
+1640624978 c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\process.h
+	<iostream>
+
+1640677869 source:c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\process.cpp
+	"process.h"
+
+1641054041 source:c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\roundrobin.cpp
+	"RoundRobin.h"
+
+1640981201 c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\roundrobin.h
+	"Queue.h"
+	"process.h"
+
+1641054206 source:c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\main.cpp
+	"RoundRobin.h"
+	<queue>
+
+1641054316 source:c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\queue.cpp
+	"Queue.h"
+	"process.h"
+	<assert.h>
+	<iostream>
+
+1641053499 c:\users\hossam\downloads\myfiles\computer science\dr mostafa\03 data structures\00 mycode\07 project#2\cpu-scheduler\queue.h
+
