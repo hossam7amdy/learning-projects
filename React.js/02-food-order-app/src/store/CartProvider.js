@@ -79,7 +79,6 @@ const CartProvider = (props) => {
   };
 
   const replaceCartHandler = (cart) => {
-    console.log(cart);
     dispatchCartState({ type: "REPLACE", cart });
   };
 

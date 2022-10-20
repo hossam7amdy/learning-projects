@@ -1,3 +1,5 @@
+import React from "react";
+
 import classes from "./MealsSummery.module.css";
 
 const MealsSummary = () => {

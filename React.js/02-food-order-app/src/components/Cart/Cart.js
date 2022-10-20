@@ -1,18 +1,19 @@
-import { Fragment, useContext, useState } from "react";
-import CartContext from "../../store/cart-context";
-import Checkout from "./Checkout";
-import Modal from "../UI/Modal";
-import classes from "./Cart.module.css";
-import CartItem from "./CartItem";
-import useFetch from "../../hooks/use-fetch";
+import React, { Fragment, useContext, useState } from "react";
+
 import LoadingSpinner from "../UI/LoadingSpinner";
+import CartContext from "../../store/cart-context";
+import useMutate from "../../hooks/use-mutate";
+import CartItem from "./CartItem";
+import Checkout from "./Checkout";
+import classes from "./Cart.module.css";
+import Modal from "../UI/Modal";
 
 const Cart = (props) => {
   const [didSubmit, setDidSubmit] = useState(false);
   const [isCheckout, setIsCheckout] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { error, isLoading, fetchAPI: updateCart } = useFetch();
+  const { error, isLoading, request } = useMutate();
   const cartCtx = useContext(CartContext);
 
   const hasItems = cartCtx.items.length > 0;
@@ -33,24 +34,22 @@ const Cart = (props) => {
     setIsCheckout((cartIsShown) => !cartIsShown);
   };
 
-  const submitOrderHandler = async (userData) => {
+  const submitOrderHandler = (userData) => {
     setIsSubmitting(true);
-    await updateCart(
-      "https://food-order-app-74b26-default-rtdb.firebaseio.com/orders.json",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: {
-          user: userData,
-          order: cartCtx,
-        },
-      }
-    );
+    const config = {
+      url: "http://localhost:4000/orders",
+      method: "post",
+      data: {
+        user: userData,
+        order: cartCtx,
+      },
+    };
 
-    console.log(error); // ???
-    cartCtx.clearCart();
-    setDidSubmit(true);
-    setIsSubmitting(false);
+    request(config).then(() => {
+      cartCtx.clearCart();
+      setDidSubmit(true);
+      setIsSubmitting(false);
+    });
   };
 
   const cartItems = (
@@ -111,7 +110,6 @@ const Cart = (props) => {
       </Fragment>
     );
   }
-  // (didSubmit && !error) // doesn't work. Don't know why yet ?
   if (didSubmit) {
     isSubmittingModalContent = (
       <Fragment>

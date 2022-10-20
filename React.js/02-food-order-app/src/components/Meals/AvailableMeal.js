@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/use-fetch";
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
@@ -7,9 +7,7 @@ import MealItem from "./MealItem";
 
 const AvailableMeals = () => {
   const [mealsList, setMealsList] = useState([]);
-  const { isLoading, error, data } = useFetch(
-    "https://food-order-app-74b26-default-rtdb.firebaseio.com/meals.json"
-  );
+  const { isLoading, error, data } = useFetch("http://localhost:4000/meals");
 
   useEffect(() => {
     const mealsArray = [];

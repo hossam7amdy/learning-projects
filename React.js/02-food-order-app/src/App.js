@@ -1,56 +1,46 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import Cart from "./components/Cart/Cart";
-import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
+import Header from "./components/Layout/Header";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 import useFetch from "./hooks/use-fetch";
+import useMutate from "./hooks/use-mutate";
 import CartContext from "./store/cart-context";
-import CartProvider from "./store/CartProvider";
-
-let isInitial = true;
 
 function App() {
+  const { request } = useMutate();
   const cartCtx = useContext(CartContext);
   const [cartIsShown, setCartIsShown] = useState(false);
-  const {
-    isLoading,
-    data: cartData,
-    fetchAPI: sendCartItems,
-  } = useFetch(
-    "https://food-order-app-74b26-default-rtdb.firebaseio.com/cart.json"
-  );
+  const { isLoading, data: cartData } = useFetch("http://localhost:4000/cart");
 
   useEffect(() => {
     if (cartData) {
-      // BUG: cart does not update
-      cartCtx.replaceCartItems({
-        items: cartData.meals,
-        totalAmount: cartData.totalAmount,
-      });
+      cartCtx.replaceCartItems(...cartData);
     }
-  }, [cartData, cartCtx]);
+    // eslint-disable-next-line
+  }, [cartData]);
 
   useEffect(() => {
-    if (isInitial) {
-      isInitial = false;
-      return;
-    }
-
     if (cartCtx.changed) {
-      sendCartItems(
-        "https://food-order-app-74b26-default-rtdb.firebaseio.com/cart.json",
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: { items: cartCtx.items, totalAmount: cartCtx.totalAmount },
-        }
-      );
-    }
-  }, [cartCtx, sendCartItems]);
+      const hasItems = cartCtx.items.length !== 0;
 
-  const showCartHandler = () => {
+      const config = {
+        method: "put",
+        url: "http://localhost:4000/cart/cart",
+        data: {
+          id: "cart",
+          items: cartCtx.items,
+          totalAmount: hasItems ? cartCtx.totalAmount : 0,
+        },
+      };
+
+      request(config);
+    }
+  }, [cartCtx, request]);
+
+  const toggleCartHandler = () => {
     setCartIsShown(!cartIsShown);
   };
 
@@ -63,13 +53,13 @@ function App() {
   }
 
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={showCartHandler} />}
-      <Header onShowCart={showCartHandler} />
+    <>
+      {cartIsShown && <Cart onClose={toggleCartHandler} />}
+      <Header onShowCart={toggleCartHandler} />
       <main>
         <Meals />
       </main>
-    </CartProvider>
+    </>
   );
 }
 

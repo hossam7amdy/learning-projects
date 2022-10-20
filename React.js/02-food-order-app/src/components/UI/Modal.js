@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import classes from "./Modal.module.css";
 
 // Using props here is better than useContext(), because it makes the component more reusable

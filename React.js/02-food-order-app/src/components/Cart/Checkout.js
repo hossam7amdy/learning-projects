@@ -1,3 +1,5 @@
+import React from "react";
+
 import useInput from "../../hooks/use-input";
 import classes from "./Checkout.module.css";
 

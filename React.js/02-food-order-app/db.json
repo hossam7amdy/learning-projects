@@ -1,0 +1,122 @@
+{
+  "meals": [
+    {
+      "id": "m1",
+      "name": "Sushi",
+      "description": "Finest fish and veggies",
+      "price": 22.99
+    },
+    {
+      "id": "m2",
+      "name": "Schnitzel",
+      "description": "A german specialty!",
+      "price": 16.5
+    },
+    {
+      "id": "m3",
+      "name": "Barbecue Burger",
+      "description": "American, raw, meaty",
+      "price": 12.99
+    },
+    {
+      "id": "m4",
+      "name": "Green Bowl",
+      "description": "Healthy...and green...",
+      "price": 18.99
+    }
+  ],
+  "cart": [
+    {
+      "id": "cart",
+      "items": [
+        {
+          "id": "m2",
+          "name": "Schnitzel",
+          "price": 16.5,
+          "amount": 2
+        },
+        {
+          "id": "m3",
+          "name": "Barbecue Burger",
+          "price": 12.99,
+          "amount": 2
+        }
+      ],
+      "totalAmount": 58.980000000000004
+    }
+  ],
+  "orders": [
+    {
+      "user": {
+        "user": "hossam",
+        "street": "شارع البحر",
+        "postalCode": "12341",
+        "city": "Tanta"
+      },
+      "order": {
+        "items": [
+          {
+            "id": "m1",
+            "name": "Sushi",
+            "price": 22.99,
+            "amount": 7
+          },
+          {
+            "id": "m2",
+            "name": "Schnitzel",
+            "price": 16.5,
+            "amount": 4
+          },
+          {
+            "id": "m4",
+            "name": "Green Bowl",
+            "price": 18.99,
+            "amount": 3
+          }
+        ],
+        "totalAmount": 283.90000000000003,
+        "changed": false
+      },
+      "id": 1
+    },
+    {
+      "user": {
+        "user": "hossam",
+        "street": "شارع البحر",
+        "postalCode": "12341",
+        "city": "city"
+      },
+      "order": {
+        "items": [
+          {
+            "id": "m2",
+            "name": "Schnitzel",
+            "price": 16.5,
+            "amount": 5
+          },
+          {
+            "id": "m3",
+            "name": "Barbecue Burger",
+            "price": 12.99,
+            "amount": 5
+          },
+          {
+            "id": "m4",
+            "name": "Green Bowl",
+            "price": 18.99,
+            "amount": 5
+          },
+          {
+            "id": "m1",
+            "name": "Sushi",
+            "price": 22.99,
+            "amount": 5
+          }
+        ],
+        "totalAmount": 357.34999999999997,
+        "changed": true
+      },
+      "id": 2
+    }
+  ]
+}
