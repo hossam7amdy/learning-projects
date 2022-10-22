@@ -1,32 +1,33 @@
 import { useRef } from "react";
+
 import useHttp from "../../hooks/use-http";
-import { FIREBASE_DOMAIN } from "../../lib/config";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 import classes from "./NewCommentForm.module.css";
 
-const NewCommentForm = (props) => {
+const NewCommentForm = ({ quoteId, onAddComment }) => {
   const commentTextRef = useRef();
-  const { isLoading, fetchAPI: sendComment } = useHttp();
+  const { isLoading, request: sendComment } = useHttp();
 
-  const submitFormHandler = async (event) => {
+  const submitFormHandler = (event) => {
     event.preventDefault();
-    const { quoteId } = props;
     const enteredText = commentTextRef.current.value;
 
     if (enteredText.trim().length === 0) {
       return; // TODO: send feedback to the user
     }
 
-    // send comment to server
-    await sendComment(`${FIREBASE_DOMAIN}/comments/${quoteId}.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: { text: enteredText },
-    });
+    const config = {
+      url: `comments`,
+      method: "post",
+      data: { quoteId, text: enteredText },
+    };
 
-    commentTextRef.current.value = ""; // FIXME: bad practice
-    props.onAddComment();
+    // send comment to server
+    sendComment(config).then(() => {
+      commentTextRef.current.value = ""; // FIXME: bad practice
+      onAddComment();
+    });
   };
 
   return (

@@ -1,25 +1,10 @@
-import NoQuotesFound from "../components/quotes/NoQuotesFound";
-import QuoteList from "../components/quotes/QuoteList";
-import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useHttp from "../hooks/use-http";
-import { FIREBASE_DOMAIN } from "../lib/config";
+import QuoteList from "../components/quotes/QuoteList";
+import NoQuotesFound from "../components/quotes/NoQuotesFound";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const AllQuotes = () => {
-  const {
-    data: quotesData,
-    error,
-    isLoading,
-  } = useHttp(`${FIREBASE_DOMAIN}/quotes.json`);
-
-  const loadedQuotes = [];
-
-  for (const key in quotesData) {
-    const quoteObj = {
-      id: key,
-      ...quotesData[key],
-    };
-    loadedQuotes.push(quoteObj);
-  }
+  const { data: loadedQuotes, error, isLoading } = useHttp(`quotes`);
 
   if (isLoading) {
     return (
@@ -30,18 +15,14 @@ const AllQuotes = () => {
   }
 
   if (error) {
-    return (
-      <div className="centered focused">
-        {error || "something went wrong💥💥💥"}
-      </div>
-    );
+    return <div className="centered focused">{error}</div>;
   }
 
-  if (loadedQuotes.length === 0) {
+  if (loadedQuotes?.length === 0) {
     return <NoQuotesFound />;
   }
 
-  return <QuoteList quotes={loadedQuotes} />;
+  return <QuoteList quotes={loadedQuotes || []} />;
 };
 
 export default AllQuotes;

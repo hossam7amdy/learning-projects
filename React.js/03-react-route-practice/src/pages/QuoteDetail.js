@@ -1,21 +1,16 @@
 import { Fragment } from "react";
 import { Link, Route, useParams, useRouteMatch } from "react-router-dom";
-import Comments from "../components/comments/Comments";
+
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import NoQuoteFound from "../components/quotes/NoQuotesFound";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
+import NoQuoteFound from "../components/quotes/NoQuotesFound";
+import Comments from "../components/comments/Comments";
 import useHttp from "../hooks/use-http";
-import { FIREBASE_DOMAIN } from "../lib/config";
 
 const QuoteDetail = () => {
-  const { quoteId } = useParams();
   const match = useRouteMatch();
-
-  const {
-    isLoading,
-    error,
-    data: loadedQuote,
-  } = useHttp(`${FIREBASE_DOMAIN}/quotes/${quoteId}.json`);
+  const { quoteId } = useParams();
+  const { isLoading, error, data: loadedQuote } = useHttp(`quotes/${quoteId}`);
 
   if (isLoading) {
     return <LoadingSpinner />;

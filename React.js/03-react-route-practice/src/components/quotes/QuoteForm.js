@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
 import { Prompt } from "react-router-dom";
+import { useRef, useState } from "react";
 
 import Card from "../UI/Card";
-import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./QuoteForm.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const QuoteForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);

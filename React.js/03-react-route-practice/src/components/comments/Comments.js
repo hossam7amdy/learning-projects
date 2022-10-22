@@ -1,36 +1,29 @@
 import { useState } from "react";
-import useHttp from "../../hooks/use-http";
-import { FIREBASE_DOMAIN } from "../../lib/config";
-import LoadingSpinner from "../UI/LoadingSpinner";
 
-import classes from "./Comments.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import NewCommentForm from "./NewCommentForm";
 import CommentItem from "./CommentItem";
+import useHttp from "../../hooks/use-http";
+import classes from "./Comments.module.css";
 
-const Comments = (props) => {
-  const { quoteId } = props;
+const Comments = ({ quoteId }) => {
   const [isAddingComment, setIsAddingComment] = useState(false);
   const {
-    isLoading,
     error,
-    data: commentsData,
-    fetchAPI: getCemments,
-  } = useHttp(`${FIREBASE_DOMAIN}/comments/${quoteId}.json`);
+    isLoading,
+    data: loadedComments,
+    request,
+  } = useHttp(`comments?quoteId=${quoteId}`);
 
   const startAddCommentHandler = () => {
     setIsAddingComment(true);
   };
 
-  const addCommentHandler = async () => {
-    await getCemments(`${FIREBASE_DOMAIN}/comments/${quoteId}.json`);
-    setIsAddingComment(false);
+  const addCommentHandler = () => {
+    request(`comments?quoteId=${quoteId}`).finally(() =>
+      setIsAddingComment(false)
+    );
   };
-
-  const loadedComments = [];
-  for (const key in commentsData) {
-    const commentObj = { id: key, ...commentsData[key] };
-    loadedComments.push(commentObj);
-  }
 
   let comments;
 
@@ -50,7 +43,7 @@ const Comments = (props) => {
     );
   }
 
-  if (!isLoading && loadedComments.length === 0) {
+  if (!isLoading && loadedComments?.length === 0) {
     comments = (
       <div className="centered">
         <p>No comments at the moment</p>
@@ -58,8 +51,8 @@ const Comments = (props) => {
     );
   }
 
-  if (!isLoading && loadedComments.length > 0) {
-    comments = loadedComments.map((comment) => (
+  if (!isLoading && loadedComments?.length > 0) {
+    comments = loadedComments?.map((comment) => (
       <CommentItem key={comment.id} text={comment.text} />
     ));
   }

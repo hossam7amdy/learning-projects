@@ -1,53 +1,34 @@
-import { useEffect, useState } from "react";
-import { TIMEOUT_SEC } from "../lib/config";
+import { useCallback, useEffect, useState } from "react";
 
-const timeout = (seconds) => {
-  return new Promise((_, rejecet) => {
-    setTimeout(() => {
-      rejecet(
-        new Error(`Request timeout after ${seconds} seconds. Try again!`)
-      );
-    }, seconds * 1000);
-  });
-};
+import { client } from "../utils/axios-utils";
 
-const useHttp = (url = undefined, uploadData = undefined) => {
+const useHttp = (url) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchAPI = async (url, uploadData = undefined) => {
+  const request = useCallback(async (config) => {
     setIsLoading(true);
     try {
-      const fetchPro = uploadData
-        ? fetch(url, {
-            method: uploadData.method,
-            headers: uploadData.headers,
-            body: JSON.stringify(uploadData.body),
-          })
-        : fetch(url);
-
-      const response = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
-      if (!response.ok) throw new Error("Something went wrong");
-      const responseData = await response.json();
-
-      setData(responseData);
+      const { data } = await client(config);
+      setData(data);
+      return data;
     } catch (err) {
-      setError(err.message);
+      setError("something went wrong");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchAPI(url);
-  }, [url]);
+    request(url);
+  }, [url, request]);
 
   return {
     data,
     error,
     isLoading,
-    fetchAPI,
+    request,
   };
 };
 

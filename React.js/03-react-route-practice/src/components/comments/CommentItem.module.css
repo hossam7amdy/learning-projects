@@ -3,5 +3,9 @@
   color: #4a5555;
   font-size: 1.25rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid teal;;
+  border-bottom: 2px solid teal;
+}
+
+li {
+  list-style: none;
 }
